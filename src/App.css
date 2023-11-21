@@ -301,7 +301,7 @@ nav {
 
 .detail-info-line {
   display: flex;
-  padding: 12px 0px;
+  padding: 10px 0px;
   align-items: flex-start;
   border-bottom: 0.5px solid var(--med-gray, #878787);
   width: 672px;
@@ -312,11 +312,11 @@ nav {
 }
 
 .info-data {
-  flex: 2;
+  flex: 3;
 }
 
 .info-data-services {
-  flex: 2;
+  flex: 3;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -755,6 +755,10 @@ nav {
 
   .info-data-services {
     display: none;
+  }
+
+  .info-data {
+    flex: 2;
   }
 
   .info-data-services-mobile {
