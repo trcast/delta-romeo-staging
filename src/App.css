@@ -68,8 +68,21 @@ h5 {
   line-height: normal;
 }
 
+h6 {
+  color: var(--white, #efefef);
+  font-family: "neue-haas-grotesk-text", sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+}
+
 .regular {
   font-weight: 400;
+}
+
+.semibold {
+  font-weight: 500;
 }
 
 .gray {
@@ -214,11 +227,17 @@ nav {
   width: 100%;
 }
 
-.work-preview-info h5 {
+.work-preview-name-client {
+  display: flex;
+  flex-direction: row;
+  flex: 2;
+}
+
+.work-preview-name-client h5 {
   flex: 1;
 }
 
-.work-preview-client {
+.work-preview-name-client p {
   flex: 1;
 }
 
@@ -236,10 +255,12 @@ nav {
 }
 
 .service-tag-container {
-  display: inline-flex;
+  display: flex;
+  overflow-x: auto;
   align-items: flex-start;
-  justify-content: space-between;
   padding: 0 32px 32px 32px;
+  white-space: nowrap;
+  flex-wrap: nowrap;
 }
 
 .service-tag {
@@ -301,6 +322,10 @@ nav {
   justify-content: flex-start;
   align-items: center;
   gap: 16px;
+}
+
+.info-data-services-mobile {
+  display: none;
 }
 
 .project-hero-container {
@@ -625,4 +650,191 @@ nav {
   justify-content: center;
   align-items: center;
   gap: 12px;
+}
+
+@media only screen and (max-width: 600px) {
+  h1 {
+    font-size: 60px;
+  }
+
+  h2 {
+    font-size: 40px;
+  }
+
+  h4 {
+    font-size: 18px;
+  }
+
+  h5 {
+    font-size: 16px;
+  }
+
+  h6 {
+    font-size: 14px;
+  }
+
+  p {
+    font-size: 14px;
+  }
+
+  .header {
+    margin: 64px 32px 24px 32px;
+    padding: 8px 0;
+  }
+
+  .header-link {
+    margin: 64px 32px 24px 32px;
+    padding: 8px 0;
+  }
+
+  .header-link img {
+    width: 10%;
+  }
+
+  .header-link-content {
+    padding: 8px 0;
+  }
+
+  nav {
+    margin: 0 32px;
+  }
+
+  .nav-links-container {
+    width: 240px;
+  }
+
+  .footer-address-container img {
+    width: 80%;
+  }
+
+  .footer-socials-container img {
+    width: 25%;
+  }
+
+  .homepage-bio {
+    width: 100%;
+  }
+
+  .work-preview-wrapper {
+    justify-content: flex-start;
+  }
+
+  .work-preview-info {
+    flex-direction: row;
+    justify-content: center;
+    align-items: stretch;
+  }
+
+  .work-preview-services-container {
+    display: none;
+  }
+
+  .service-tag-container {
+    padding: 0 32px 24px 32px;
+  }
+
+  .project-details-main {
+    justify-content: flex-start;
+  }
+
+  .project-page-details-container {
+    width: 100%;
+  }
+
+  .detail-info-line {
+    width: 100%;
+  }
+
+  .info-data-services {
+    display: none;
+  }
+
+  .info-data-services-mobile {
+    display: block;
+    flex: 2;
+  }
+
+  .project-brief-container h5 {
+    display: none;
+  }
+
+  .container-right-global {
+    align-items: center;
+    padding: 0 32px;
+  }
+
+  .project-gallery-container,
+  .project-sidebar-container {
+    width: 100%;
+  }
+
+  .project-gallery-row {
+    flex-direction: column;
+  }
+
+  .project-brief-container {
+    margin: 32px;
+    padding: 32px 0;
+  }
+
+  .all-work-button {
+    width: 84.5vw;
+  }
+
+  .about-bio-container {
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .services-group-container {
+    flex-direction: column;
+  }
+
+  .services-container {
+    width: 100%;
+  }
+
+  .services-group-container h4 {
+    flex: 1;
+    padding-bottom: 16px;
+    font-weight: 500;
+  }
+
+  .leader-container {
+    flex-direction: column;
+    margin-top: 64px;
+  }
+
+  .leader-image-container {
+    width: 100%;
+  }
+
+  .leader-info-container {
+    margin-left: 0px;
+  }
+
+  .leader-info-header {
+    margin: 16px 0;
+  }
+
+  .contact-global-container {
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .form-input {
+    width: 100%;
+  }
+
+  .contact-form-info-container {
+    padding-left: 0px;
+    padding-top: 32px;
+    padding-bottom: 64px;
+  }
+
+  .jobs-container {
+    width: 100%;
+  }
 }

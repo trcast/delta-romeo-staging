@@ -137,7 +137,7 @@ const Contact = () => {
         )}
 
         <section className="contact-form-info-container">
-          <h4 className="white">Get in Touch</h4>
+          <h4 className="white semibold">Get in Touch</h4>
           <p className="gray">{biographies[0]?.acf.contact_bio}</p>
         </section>
       </section>

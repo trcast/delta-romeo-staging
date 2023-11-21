@@ -1,4 +1,5 @@
 import "./App.css";
+import React, { useEffect } from "react";
 import Navbar from "./components/Navbar";
 import Homepage from "./pages/Homepage";
 import Video from "./components/Video";
@@ -13,6 +14,11 @@ import { Routes, Route, useLocation } from "react-router-dom";
 function App() {
   const location = useLocation();
   const isHomepage = location.pathname === "/";
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
   return (
     <div>
       {isHomepage && <Video />}

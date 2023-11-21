@@ -59,6 +59,9 @@ const ProjectPage = () => {
                     </p>
                   ))}
                 </div>
+                <div className="info-data-services-mobile">
+                  <p className="white">{works.acf.services[0].name}</p>
+                </div>
               </div>
             </div>
           </section>

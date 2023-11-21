@@ -48,7 +48,7 @@ const About = () => {
             className="white"
             dangerouslySetInnerHTML={{ __html: biographies[0]?.acf.about_bio }}
           />
-          <Link className="link-style" to="/contact">
+          <Link className="link-style" to="/contact" href="/contact">
             <button className="all-work-button">Contact Us</button>
           </Link>
         </div>
@@ -185,7 +185,7 @@ const About = () => {
           </div>
           <div className="leader-info-container">
             <div className="leader-info-header">
-              <h4 className="white">Ryan Ophelan</h4>
+              <h4 className="white">Ryan O'Phelan</h4>
               <h5 className="gray regular">{biographies[0]?.acf.ryan_role}</h5>
             </div>
             <p

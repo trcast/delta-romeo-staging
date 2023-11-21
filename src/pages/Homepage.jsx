@@ -45,7 +45,7 @@ const Homepage = () => {
     <div>
       <div className="homepage-bio-container">
         <div className="homepage-bio">
-          <p
+          <h6
             className="white"
             dangerouslySetInnerHTML={{
               __html: biographies[0]?.acf.homepage_bio,

@@ -45,8 +45,10 @@ const WorkPreview = ({ selectedService }) => {
         <div key={work.id} className="work-preview-wrapper">
           <Link to={`/work/${work.id}`} className="work-preview-link">
             <div className="work-preview-info hover-right-position">
-              <h5>{work.acf.project_name}</h5>
-              <p className="gray work-preview-client">{work.acf.client}</p>
+              <div className="work-preview-name-client">
+                <h5>{work.acf.project_name}</h5>
+                <p className="gray work-preview-client">{work.acf.client}</p>
+              </div>
               <div className="work-preview-services-container">
                 {work.acf.services.map((service) => (
                   <p className="gray" key={service.term_id}>
