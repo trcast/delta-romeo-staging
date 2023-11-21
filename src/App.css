@@ -699,11 +699,19 @@ nav {
     margin: 0 32px;
   }
 
+  nav img {
+    width: 80%;
+  }
+
   .nav-links-container {
     width: 240px;
   }
 
-  .footer-address-container img {
+  .footer-info-container p {
+    font-size: 10px;
+  }
+
+  .footer-info-container img {
     width: 80%;
   }
 
