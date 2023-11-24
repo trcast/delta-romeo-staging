@@ -10,6 +10,7 @@
   --med-gray: #878787;
   --white: #efefef;
   --Transition: all 0.25s cubic-bezier(0.29, 0.1, 0.34, 0.99);
+  --Transition-2: all 0.3s cubic-bezier(0.29, 0.1, 0.34, 0.99);
 }
 
 body::-webkit-scrollbar {
@@ -484,11 +485,12 @@ nav {
   flex-direction: column;
   cursor: pointer;
   gap: 16px;
+  width: 100%;
 }
 
 .services-line {
   display: flex;
-  padding: 18px 0px;
+  padding: 16px 0px;
   justify-content: space-between;
   align-items: center;
   border-bottom: 0.5px solid var(--med-gray, #878787);
@@ -496,18 +498,15 @@ nav {
 }
 
 .description-container {
-  flex: 1 0 0;
-  position: relative;
-  transition: transform var(--Transition);
-  transform: translateY(-100%);
-  margin-bottom: 32px;
+  max-height: 0;
+  opacity: 0;
+  transition: var(--Transition-2);
 }
 
 .description-container.open {
-  flex: 1 0 0;
-  transform: translateY(0);
-  position: relative;
-  margin-bottom: 32px;
+  max-height: 1000px;
+  opacity: 1;
+  transition: var(--Transition-2);
 }
 
 .chevron {

@@ -58,7 +58,9 @@ const Homepage = () => {
         selectedService={selectedService}
         onServiceTagClick={handleServiceTagClick}
       />
-      <WorkPreview selectedService={selectedService} />
+      <div>
+        <WorkPreview selectedService={selectedService} />
+      </div>
       <SectionHeaderLink title="About" link="about" />
       <SectionHeaderLink title="Contact" link="contact" />
       <SectionHeaderLink title="Jobs" link="jobs" />

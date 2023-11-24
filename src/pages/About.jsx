@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import SectionHeader from "../components/SectionHeader";
+import Service from "../components/Service";
 import { Link } from "react-router-dom";
-import chevron from "../assets/client/chevron.svg";
 import "../App.css";
 
 const About = () => {
@@ -54,114 +54,18 @@ const About = () => {
         </div>
       </section>
       <SectionHeader title="Services" />
-      <section className="services-global-container">
-        <div className="services-group-container">
-          <h4 className="white regular">
-            {biographies[0]?.acf.service_1_name}
-          </h4>
-          <div className="services-container">
-            {biographies[0]?.acf.service_1_group.map((service) => (
-              <div className="service-line-container">
-                <div
-                  className="services-line"
-                  key={service.term_id}
-                  onClick={() => toggleDescription(service.term_id)}
-                >
-                  <h5 className="regular">{service.name}</h5>
-                  <img
-                    className={`chevron ${
-                      openService === service.term_id ? "flip" : ""
-                    }`}
-                    src={chevron}
-                    alt=""
-                  />
-                </div>
-                {openService === service.term_id && (
-                  <div
-                    className={`description-container ${
-                      openService === service.term_id ? "open" : ""
-                    }`}
-                  >
-                    <p className="gray">{service.description}</p>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-      <section className="services-global-container">
-        <div className="services-group-container">
-          <h4 className="white regular">
-            {biographies[0]?.acf.service_2_name}
-          </h4>
-          <div className="services-container">
-            {biographies[0]?.acf.service_2_group.map((service) => (
-              <div className="service-line-container">
-                <div
-                  className="services-line"
-                  key={service.term_id}
-                  onClick={() => toggleDescription(service.term_id)}
-                >
-                  <h5 className="regular">{service.name}</h5>
-                  <img
-                    className={`chevron ${
-                      openService === service.term_id ? "flip" : ""
-                    }`}
-                    src={chevron}
-                    alt=""
-                  />
-                </div>
-                {openService === service.term_id && (
-                  <div
-                    className={`description-container ${
-                      openService === service.term_id ? "open" : ""
-                    }`}
-                  >
-                    <p className="gray">{service.description}</p>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-      <section className="services-global-container">
-        <div className="services-group-container">
-          <h4 className="white regular">
-            {biographies[0]?.acf.service_3_name}
-          </h4>
-          <div className="services-container">
-            {biographies[0]?.acf.service_3_group.map((service) => (
-              <div className="service-line-container">
-                <div
-                  className="services-line"
-                  key={service.term_id}
-                  onClick={() => toggleDescription(service.term_id)}
-                >
-                  <h5 className="regular">{service.name}</h5>
-                  <img
-                    className={`chevron ${
-                      openService === service.term_id ? "flip" : ""
-                    }`}
-                    src={chevron}
-                    alt=""
-                  />
-                </div>
-                {openService === service.term_id && (
-                  <div
-                    className={`description-container ${
-                      openService === service.term_id ? "open" : ""
-                    }`}
-                  >
-                    <p className="gray">{service.description}</p>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <Service
+        serviceName={biographies[0]?.acf.service_1_name}
+        serviceGroup={biographies[0]?.acf.service_1_group}
+      />
+      <Service
+        serviceName={biographies[0]?.acf.service_2_name}
+        serviceGroup={biographies[0]?.acf.service_2_group}
+      />
+      <Service
+        serviceName={biographies[0]?.acf.service_3_name}
+        serviceGroup={biographies[0]?.acf.service_3_group}
+      />
       <SectionHeader title="Leadership" />
       <section className="leaders-global-container">
         <div className="leader-container">
