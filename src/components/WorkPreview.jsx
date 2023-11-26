@@ -106,7 +106,7 @@ const WorkPreview = ({ selectedService }) => {
           <img
             src={hoveredWork.acf.main_project_image}
             alt="Main Project"
-            style={{ maxWidth: "350px" }}
+            style={{ maxWidth: "400px" }}
           />
         </div>
       )}
