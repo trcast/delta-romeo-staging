@@ -202,10 +202,81 @@ nav {
   text-align: center;
 }
 
-.video {
-  width: auto;
+.video img {
+  width: 100vw;
   height: 100%;
   object-fit: cover;
+}
+
+.title-tag-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  padding: 0 12px;
+  position: absolute;
+  top: 10px;
+}
+
+.title-tag {
+  background-color: rgba(30, 30, 30, 0.7);
+  padding: 8px 16px;
+  border-radius: 50px;
+  border: none;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  border: none;
+  z-index: 100;
+  background-color: var(--black);
+}
+
+.modal {
+  width: 80%;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  color: white;
+  border: none;
+}
+
+.vimeo-video {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.close-modal-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-end;
+  width: 100%;
+}
+
+.close-modal {
+  text-decoration: none;
+  border: none;
+  font-size: 24px;
+  color: var(--white);
+  background-color: var(--black);
+  margin-bottom: 12px;
+  padding-right: 21px;
+  cursor: pointer;
+  font-family: "neue-haas-grotesk-text", sans-serif;
 }
 
 .homepage-bio-container {
@@ -714,6 +785,18 @@ nav {
     padding: 8px 0;
   }
 
+  .video-container {
+    max-height: 600px;
+  }
+
+  .modal {
+    height: auto;
+  }
+
+  .close-modal {
+    margin-bottom: 6px;
+  }
+
   nav {
     margin: 0 32px;
   }
@@ -893,6 +976,16 @@ nav {
 
   p {
     font-size: 14px;
+  }
+
+  .video-container {
+    max-height: 400px;
+  }
+
+  .video img {
+    width: 100vw;
+    height: 100%;
+    object-fit: cover;
   }
 
   .header {
