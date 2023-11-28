@@ -90,8 +90,8 @@ const Contact = () => {
             </button>
           </div>
         ) : (
-          <section className="conact-form-container">
-            <form onSubmit={handleSubmit}>
+          <section className="contact-form-container">
+            <form className="contact-form" onSubmit={handleSubmit}>
               <input
                 type="text"
                 id="name"
@@ -129,7 +129,7 @@ const Contact = () => {
                 className="form-input"
                 rows={10}
               />
-              <button className="all-work-button" type="submit">
+              <button className="contact-button" type="submit">
                 Submit
               </button>
             </form>

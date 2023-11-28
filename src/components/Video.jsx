@@ -75,19 +75,17 @@ const Video = () => {
 
       {isModalOpen && (
         <div className="modal-container">
-          <div className="modal">
-            <div className="close-modal-container">
-              <button className="close-modal" onClick={closeModal}>
-                X
-              </button>
-            </div>
-            <iframe
-              src="https://player.vimeo.com/video/677307385?badge=0&amp;autopause=0&amp;quality_selector=1&amp;player_id=0&amp;app_id=58479"
-              allow="autoplay; fullscreen;"
-              title="Demo Reel 2022"
-              className="vimeo-video"
-            ></iframe>
+          <div className="close-modal-container">
+            <button className="close-modal" onClick={closeModal}>
+              X
+            </button>
           </div>
+          <iframe
+            src="https://player.vimeo.com/video/677307385?badge=0&amp;autopause=0&amp;quality_selector=1&amp;player_id=0&amp;app_id=58479"
+            allow="autoplay; fullscreen;"
+            title="Demo Reel 2022"
+            className="vimeo-video"
+          ></iframe>
         </div>
       )}
     </div>
