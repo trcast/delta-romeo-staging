@@ -479,22 +479,22 @@ nav {
 
 .project-gallery-container {
   width: 1024px;
-  gap: 32px;
-  display: flex;
-  flex-direction: column;
-}
-
-.project-gallery-row {
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: 32px;
 }
 
-.project-gallery-container img {
-  max-width: 494px;
-  height: auto;
+.project-image-container-page {
+  display: flex;
+  width: 494px;
+  height: 438px;
+  overflow: hidden;
+}
+
+.project-image {
   object-fit: cover;
   width: 100%;
+  height: 100%;
 }
 
 .project-sidebar-container {
@@ -503,6 +503,65 @@ nav {
   border-top: 0.5px solid var(--med-gray, #878787);
   border-bottom: 0.5px solid var(--med-gray, #878787);
   margin-top: 64px;
+}
+
+.image-modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+}
+
+.image-modal-content {
+  max-width: 80%;
+  max-height: 80vh;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 18px;
+  cursor: pointer;
+  border: 1px solid var(--white);
+  border-radius: 4px;
+  color: var(--white);
+  padding: 6px 12px;
+}
+
+.prev,
+.next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 36px;
+  color: white;
+  cursor: pointer;
+}
+
+.prev {
+  left: 20px;
+}
+
+.next {
+  right: 20px;
+}
+
+.chevron-mobile-left {
+  transform: rotate(90deg);
+  width: 160%;
+}
+
+.chevron-mobile-right {
+  transform: rotate(-90deg);
+  width: 160%;
 }
 
 .all-work-button {
@@ -760,6 +819,20 @@ nav {
 }
 
 @media only screen and (max-width: 600px) {
+  .project-gallery-container {
+    width: 1024px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .project-image-container-page {
+    display: flex;
+    width: 100%;
+    height: 438px;
+    overflow: hidden;
+  }
+
   h1 {
     font-size: 60px;
   }
@@ -971,6 +1044,20 @@ nav {
 }
 
 @media only screen and (min-width: 601px) and (max-width: 1450px) {
+  .project-gallery-container {
+    width: 1024px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .project-image-container-page {
+    display: flex;
+    width: 100%;
+    height: 600px;
+    overflow: hidden;
+  }
+
   h1 {
     font-size: 60px;
   }

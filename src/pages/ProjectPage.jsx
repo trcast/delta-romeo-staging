@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
+import chevron from "../assets/client/chevron.svg";
 
 const ProjectPage = () => {
   const [works, setWorks] = useState([]);
   const { id } = useParams();
+  const [selectedImageIndex, setSelectedImageIndex] = useState(null);
 
   const fetchData = async () => {
     try {
@@ -31,6 +32,41 @@ const ProjectPage = () => {
 
     return () => clearInterval(intervalId);
   }, []);
+
+  const projectImages = [
+    works?.acf?.project_image_1,
+    works?.acf?.project_image_2,
+    works?.acf?.project_image_3,
+    works?.acf?.project_image_4,
+  ];
+
+  const openModal = (imageIndex) => {
+    setSelectedImageIndex(imageIndex);
+  };
+
+  const closeModal = () => {
+    setSelectedImageIndex(null);
+  };
+
+  const navigateImage = (direction) => {
+    const maxIndex = (projectImages && projectImages.length) - 1;
+
+    // Return if projectImages is undefined or empty
+    if (!projectImages || projectImages.length === 0) {
+      return;
+    }
+
+    let newIndex = selectedImageIndex + direction;
+
+    // Ensure newIndex stays within bounds
+    if (newIndex < 0) {
+      newIndex = maxIndex;
+    } else if (newIndex > maxIndex) {
+      newIndex = 0;
+    }
+
+    setSelectedImageIndex(newIndex);
+  };
 
   return (
     <>
@@ -79,26 +115,38 @@ const ProjectPage = () => {
             />
           </section>
           <div className="container-right-global">
-            <div className="project-gallery-container">
-              <div className="project-gallery-row">
-                <img src={works.acf.project_image_1} alt="" />
-                <img src={works.acf.project_image_2} alt="" />
-              </div>
-              <div className="project-gallery-row">
-                <img src={works.acf.project_image_3} alt="" />
-                <img src={works.acf.project_image_4} alt="" />
-              </div>
-            </div>
-            {works.acf.include_sidebar && (
-              <div className="project-sidebar-container">
-                <p className="gray">{works.acf.sidebar}</p>
+            <section className="project-gallery-container">
+              {projectImages.map((image, index) => (
+                <div className="project-image-container-page">
+                  <img
+                    key={index}
+                    src={image}
+                    alt=""
+                    onClick={() => openModal(index)}
+                    className="project-image"
+                  />
+                </div>
+              ))}
+            </section>
+
+            {selectedImageIndex !== null && (
+              <div className="image-modal">
+                <span className="close" onClick={closeModal}>
+                  &times;
+                </span>
+                <span className="prev" onClick={() => navigateImage(-1)}>
+                  <img className="chevron-mobile-left" src={chevron} alt="" />
+                </span>
+                <img
+                  className="image-modal-content"
+                  src={projectImages[selectedImageIndex]}
+                  alt=""
+                />
+                <span className="next" onClick={() => navigateImage(1)}>
+                  <img className="chevron-mobile-right" src={chevron} alt="" />
+                </span>
               </div>
             )}
-            <section>
-              <Link to="/work" className="link-style">
-                <button className="all-work-button">All Work</button>
-              </Link>
-            </section>
           </div>
         </div>
       )}

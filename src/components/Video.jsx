@@ -77,7 +77,7 @@ const Video = () => {
         <div className="modal-container">
           <div className="close-modal-container">
             <button className="close-modal" onClick={closeModal}>
-              X
+              &times;
             </button>
           </div>
           <iframe
