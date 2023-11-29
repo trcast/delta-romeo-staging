@@ -104,7 +104,7 @@ const WorkPreview = ({ selectedService }) => {
           }}
         >
           <img
-            src={hoveredWork.acf.main_project_image}
+            src={hoveredWork.acf.rollover_image}
             alt="Main Project"
             style={{ maxWidth: "400px" }}
           />

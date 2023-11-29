@@ -427,23 +427,23 @@ nav {
 
 .main-project-image-container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
-  max-height: 632px;
-  overflow: hidden;
 }
 
-.main-project-image-container img {
+.main-project-image-container video {
   width: 100%;
   height: auto;
   object-fit: contain;
+  margin-bottom: 32px;
 }
 
 .project-brief-container {
   display: flex;
   padding: 64px 0;
-  margin: 64px 32px;
+  margin: 32px 32px 64px 32px;
   justify-content: space-between;
   align-items: flex-start;
   border-top: 0.5px solid var(--med-gray, #878787);
@@ -484,14 +484,16 @@ nav {
   gap: 32px;
 }
 
-.project-image-container-page {
+.project-image-container-page,
+.project-video-container {
   display: flex;
   width: 494px;
   height: 438px;
   overflow: hidden;
 }
 
-.project-image {
+.project-image,
+.project-video-container video {
   object-fit: cover;
   width: 100%;
   height: 100%;
@@ -514,7 +516,7 @@ nav {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: var(--black);
   z-index: 1000;
 }
 
@@ -776,6 +778,10 @@ nav {
   align-items: center;
   background: #333;
   padding: 128px 0px;
+}
+
+.phone-contact {
+  width: 8rem;
 }
 
 .jobs-container {
@@ -1043,7 +1049,7 @@ nav {
   }
 }
 
-@media only screen and (min-width: 601px) and (max-width: 1450px) {
+@media only screen and (min-width: 601px) and (max-width: 1000px) {
   .project-gallery-container {
     width: 1024px;
     display: flex;
@@ -1271,6 +1277,162 @@ nav {
 
   .contact-form-info-container {
     width: 100%;
+  }
+
+  .jobs-container {
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width: 1001px) and (max-width: 1400px) {
+  .video img {
+    width: 100vw;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .header {
+    margin: 64px 32px 24px 32px;
+    padding: 8px 0;
+  }
+
+  .header-link {
+    margin: 64px 32px 24px 32px;
+    padding: 8px 0;
+  }
+
+  .header-link-content {
+    padding: 8px 0;
+  }
+
+  nav img {
+    width: 80%;
+  }
+
+  nav {
+    margin: 0 248px 0 32px;
+  }
+
+  .nav-links-container {
+    width: 340px;
+  }
+
+  .close-modal {
+    font-size: 24px;
+  }
+
+  .title-tag-container p {
+    font-size: 24px;
+  }
+
+  .homepage-bio {
+    width: 552px;
+  }
+
+  .work-preview-wrapper {
+    justify-content: flex-start;
+  }
+
+  .work-preview-info {
+    flex-direction: row;
+    justify-content: center;
+    align-items: stretch;
+  }
+
+  .service-tag-container {
+    padding: 0 32px 24px 32px;
+  }
+
+  .project-details-main {
+    justify-content: flex-end;
+  }
+
+  .project-page-details-container {
+    width: 552px;
+  }
+
+  .detail-info-line {
+    width: 100%;
+  }
+
+  .info-data-services {
+    display: none;
+  }
+
+  .info-data {
+    flex: 2;
+  }
+
+  .info-data-services-mobile {
+    display: block;
+    flex: 2;
+  }
+
+  .container-right-global {
+    padding: 0 32px;
+  }
+
+  .project-gallery-container,
+  .project-sidebar-container {
+    width: 100%;
+  }
+
+  .project-brief-container {
+    justify-content: flex-end;
+  }
+
+  .project-brief-container div {
+    width: 552px;
+  }
+
+  .project-gallery-container {
+    width: 552px;
+    align-items: flex-end;
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .all-work-button {
+    width: 552px;
+  }
+
+  .about-bio-container {
+    width: 552px;
+  }
+
+  .services-container {
+    width: 552px;
+  }
+
+  .services-group-container h4 {
+    flex: 1;
+    padding-bottom: 16px;
+    font-weight: 500;
+  }
+
+  .leader-container {
+    align-items: flex-start;
+  }
+
+  .leader-info-container {
+    width: 552px;
+  }
+
+  .leader-info-header {
+    margin: 16px 0;
+  }
+
+  .leader-image-container {
+    flex: 1;
+    margin-right: 40px;
+    height: 500px;
+  }
+
+  .form-input {
+    width: 352px;
+  }
+
+  .contact-form-info-container {
+    width: 552px;
   }
 
   .jobs-container {

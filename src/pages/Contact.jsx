@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import SectionHeader from "../components/SectionHeader";
+import Phone from "../assets/client/phone.svg";
 
 const Contact = () => {
   const [name, setName] = useState("");
@@ -139,6 +140,7 @@ const Contact = () => {
         <section className="contact-form-info-container">
           <h4 className="white semibold">Get in Touch</h4>
           <p className="gray">{biographies[0]?.acf.contact_bio}</p>
+          <img className="phone-contact" src={Phone} alt="" />
         </section>
       </section>
     </div>
