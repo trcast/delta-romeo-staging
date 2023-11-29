@@ -13,10 +13,6 @@
   --Transition-2: all 0.3s cubic-bezier(0.29, 0.1, 0.34, 0.99);
 }
 
-body::-webkit-scrollbar {
-  display: none;
-}
-
 .p-semibold {
   font-family: "neue-haas-grotesk-text", sans-serif;
   font-size: 18px;
