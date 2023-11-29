@@ -1284,7 +1284,7 @@ nav {
   }
 }
 
-@media only screen and (min-width: 1001px) and (max-width: 1400px) {
+@media only screen and (min-width: 1001px) and (max-width: 1420px) {
   .video img {
     width: 100vw;
     height: 100%;
