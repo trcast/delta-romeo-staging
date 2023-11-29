@@ -140,7 +140,10 @@ const Contact = () => {
         <section className="contact-form-info-container">
           <h4 className="white semibold">Get in Touch</h4>
           <p className="gray">{biographies[0]?.acf.contact_bio}</p>
-          <img className="phone-contact" src={Phone} alt="" />
+          <div className="phone-container">
+            <p className="gray">Call us at:</p>
+            <img className="phone-contact" src={Phone} alt="" />
+          </div>
         </section>
       </section>
     </div>

@@ -780,6 +780,15 @@ nav {
   width: 8rem;
 }
 
+.phone-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.phone-container p {
+  margin-right: 0.6rem;
+}
+
 .jobs-container {
   display: flex;
   width: 892px;
