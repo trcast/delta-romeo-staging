@@ -131,14 +131,11 @@ const ProjectPage = () => {
 
     let newIndex = selectedImageIndex + direction;
 
-    // Adjust newIndex to be within the bounds of the filtered array
     newIndex = (newIndex + maxIndex + 1) % (maxIndex + 1);
 
-    // Find the next valid index
     while (projectMedia[newIndex].type === "false") {
       newIndex = (newIndex + direction + maxIndex + 1) % (maxIndex + 1);
 
-      // If all media items have type === "false", break the loop
       if (newIndex === selectedImageIndex) {
         console.log("All media items have type === 'false'");
         break;
