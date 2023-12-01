@@ -1443,7 +1443,7 @@ nav {
   }
 }
 
-@media only screen and (min-width: 1420px) {
+@media only screen and (min-width: 1421px) and (max-width: 1610px) {
   .video img {
     width: 100vw;
     height: 100%;
@@ -1597,7 +1597,7 @@ nav {
   }
 }
 
-@media only screen and (min-width: 1610px) {
+@media only screen and (min-width: 1611px) {
   body {
     padding: 0 100px;
   }
@@ -1759,7 +1759,7 @@ nav {
   }
 }
 
-@media only screen and (min-width: 2000px) {
+@media only screen and (min-width: 2001px) {
   body {
     padding: 0 200px;
   }
