@@ -1602,6 +1602,10 @@ nav {
     padding: 0 100px;
   }
 
+  .title-tag-container {
+    padding: 0 140px;
+  }
+
   .video img {
     width: 100vw;
     height: 100%;
@@ -1758,6 +1762,10 @@ nav {
 @media only screen and (min-width: 2000px) {
   body {
     padding: 0 200px;
+  }
+
+  .title-tag-container {
+    padding: 0 240px;
   }
 
   .video img {
