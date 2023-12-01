@@ -6,7 +6,6 @@ import chevron from "../assets/client/chevron.svg";
 const ProjectPage = () => {
   const [works, setWorks] = useState({ acf: {} });
   const { id } = useParams();
-  const [selectedImageIndex, setSelectedImageIndex] = useState(null);
 
   const fetchData = async () => {
     try {
@@ -33,119 +32,48 @@ const ProjectPage = () => {
     return () => clearInterval(intervalId);
   }, []);
 
-  const media1 =
-    works.acf.project_media_1_type === "Video" &&
-    works.acf.project_media_1_type !== "false"
-      ? works.acf.project_video_1
-      : works.acf.project_image_1;
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(null);
 
-  const media2 =
-    works.acf.project_media_2_type === "Video" &&
-    works.acf.project_media_2_type !== "false"
-      ? works.acf.project_video_2
-      : works.acf.project_image_2;
-
-  const media3 =
-    works.acf.project_media_3_type === "Video" &&
-    works.acf.project_media_3_type !== "false"
-      ? works.acf.project_video_3
-      : works.acf.project_image_3;
-
-  const media4 =
-    works.acf.project_media_4_type === "Video" &&
-    works.acf.project_media_4_type !== "false"
-      ? works.acf.project_video_4
-      : works.acf.project_image_4;
-
-  const media5 =
-    works.acf.project_media_5_type === "Video" &&
-    works.acf.project_media_5_type !== "false"
-      ? works.acf.project_video_5
-      : works.acf.project_image_5;
-
-  const media6 =
-    works.acf.project_media_6_type === "Video" &&
-    works.acf.project_media_6_type !== "false"
-      ? works.acf.project_video_6
-      : works.acf.project_image_6;
-
-  const media7 =
-    works.acf.project_media_7_type === "Video" &&
-    works.acf.project_media_7_type !== "false"
-      ? works.acf.project_video_7
-      : works.acf.project_image_7;
-
-  const media8 =
-    works.acf.project_media_8_type === "Video" &&
-    works.acf.project_media_8_type !== "false"
-      ? works.acf.project_video_8
-      : works.acf.project_image_8;
-
-  const media9 =
-    works.acf.project_media_9_type === "Video" &&
-    works.acf.project_media_9_type !== "false"
-      ? works.acf.project_video_9
-      : works.acf.project_image_9;
-
-  const media10 =
-    works.acf.project_media_10_type === "Video" &&
-    works.acf.project_media_10_type !== "false"
-      ? works.acf.project_video_10
-      : works.acf.project_image_10;
-
-  const projectMedia = [
-    { type: works.acf.project_media_1_type, content: media1 },
-    { type: works.acf.project_media_2_type, content: media2 },
-    { type: works.acf.project_media_3_type, content: media3 },
-    { type: works.acf.project_media_4_type, content: media4 },
-    { type: works.acf.project_media_5_type, content: media5 },
-    { type: works.acf.project_media_6_type, content: media6 },
-    { type: works.acf.project_media_7_type, content: media7 },
-    { type: works.acf.project_media_8_type, content: media8 },
-    { type: works.acf.project_media_9_type, content: media9 },
-    { type: works.acf.project_media_10_type, content: media10 },
-  ];
-
-  const filteredMedia = projectMedia.filter(
-    (media) =>
-      media.type !== "false" &&
-      media.content !== "false" &&
-      media.type &&
-      media.content
-  );
-
-  const openModal = (mediaIndex) => {
-    setSelectedImageIndex(mediaIndex);
+  const openModal = (image, index) => {
+    setSelectedImage(image);
+    setSelectedImageIndex(index - 1);
+    setModalOpen(true);
   };
 
   const closeModal = () => {
+    setModalOpen(false);
+    setSelectedImage(null);
     setSelectedImageIndex(null);
   };
 
-  const navigateMedia = (direction) => {
-    const maxIndex = projectMedia.length - 1;
+  const handlePrev = () => {
+    const totalImages = 10;
+    const prevIndex = (selectedImageIndex - 1 + totalImages) % totalImages;
+    const prevImageKey = `project_image_${prevIndex + 1}`;
+    const prevImage = works.acf[prevImageKey];
 
-    if (projectMedia.length === 0) {
-      return;
+    if (prevImage !== false) {
+      setSelectedImage(prevImage);
+      setSelectedImageIndex(prevIndex);
     }
+  };
 
-    let newIndex = selectedImageIndex + direction;
+  const handleNext = () => {
+    const totalImages = 10;
+    const nextIndex = (selectedImageIndex + 1) % totalImages;
+    const nextImageKey = `project_image_${nextIndex + 1}`;
+    const nextImage = works.acf[nextImageKey];
 
-    newIndex = (newIndex + maxIndex + 1) % (maxIndex + 1);
-
-    while (projectMedia[newIndex].type === "false") {
-      newIndex = (newIndex + direction + maxIndex + 1) % (maxIndex + 1);
-
-      if (newIndex === selectedImageIndex) {
-        console.log("All media items have type === 'false'");
-        break;
-      }
+    if (nextImage !== false) {
+      setSelectedImage(nextImage);
+      setSelectedImageIndex(nextIndex);
+    } else {
+      // If the next image is false, loop back to the first image
+      setSelectedImage(works.acf.project_image_1);
+      setSelectedImageIndex(0);
     }
-
-    console.log("Selected Index:", selectedImageIndex);
-    console.log("New Index:", newIndex);
-
-    setSelectedImageIndex(newIndex);
   };
 
   return (
@@ -189,7 +117,7 @@ const ProjectPage = () => {
           <section className="project-hero-container">
             <h2>{works.acf.project_name}</h2>
             <div className="main-project-image-container">
-              {works.acf.main_project_video_1 && (
+              {works.acf.main_project_video_1_type === "Video" && (
                 <video width="100%" height="100%" controls>
                   <source
                     src={works.acf.main_project_video_1}
@@ -197,21 +125,12 @@ const ProjectPage = () => {
                   />
                 </video>
               )}
-              {works.acf.main_project_video_2 && (
-                <video width="100%" height="100%" controls>
-                  <source
-                    src={works.acf.main_project_video_2}
-                    type="video/mp4"
-                  />
-                </video>
-              )}
-              {works.acf.main_project_video_3 && (
-                <video width="100%" height="100%" controls>
-                  <source
-                    src={works.acf.main_project_video_3}
-                    type="video/mp4"
-                  />
-                </video>
+              {works.acf.main_project_video_1_type === "Url" && (
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: works.acf.main_project_url_1,
+                  }}
+                />
               )}
             </div>
           </section>
@@ -224,76 +143,89 @@ const ProjectPage = () => {
           </section>
           <div className="container-right-global">
             <section className="project-gallery-container">
-              {filteredMedia.map(
-                (media, index) =>
-                  media.type &&
-                  media.content && (
-                    <div
-                      key={index}
-                      className={
-                        media.type === "Video"
-                          ? "project-video-container"
-                          : "project-image-container-page"
-                      }
-                    >
-                      {media.type === "Video" ? (
-                        <video width="100%" height="100%" controls>
-                          <source src={media.content} type="video/mp4" />
-                        </video>
-                      ) : (
-                        <img
-                          src={media.content}
-                          alt=""
-                          onClick={() => openModal(index)}
-                          className="project-image"
-                        />
-                      )}
-                    </div>
-                  )
-              )}
+              <div className="project-gallery-video-container">
+                {Array.from({ length: 5 }, (_, index) => index + 1).map(
+                  (index) => {
+                    const videoTypeKey = `secondary_project_video_${index}_type`;
+                    const videoKey = `secondary_project_video_${index}`;
+                    const urlKey = `secondary_project_url_${index}`;
+                    if (
+                      works.acf[videoTypeKey] &&
+                      (works.acf[videoKey] !== false ||
+                        (works.acf[urlKey] && works.acf[urlKey].trim() !== ""))
+                    ) {
+                      return (
+                        <div key={index} className="gallery-video-container">
+                          {works.acf[videoTypeKey] === "Video" && (
+                            <video width="100%" height="100%" controls>
+                              <source
+                                src={works.acf[videoKey]}
+                                type="video/mp4"
+                              />
+                            </video>
+                          )}
+                          {works.acf[videoTypeKey] === "Url" && (
+                            <div
+                              dangerouslySetInnerHTML={{
+                                __html: works.acf[urlKey],
+                              }}
+                            />
+                          )}
+                        </div>
+                      );
+                    }
+
+                    return null;
+                  }
+                )}
+              </div>
+              <div className="project-gallery-image-container">
+                {Array.from({ length: 10 }, (_, index) => index + 1).map(
+                  (index) => {
+                    const imageKey = `project_image_${index}`;
+                    if (works.acf[imageKey] !== false) {
+                      return (
+                        <div
+                          key={index}
+                          className="project-image-container-page"
+                          onClick={() => openModal(works.acf[imageKey], index)}
+                        >
+                          <img
+                            src={works.acf[imageKey]}
+                            alt={`Project Image ${index}`}
+                            className="project-image"
+                          />
+                        </div>
+                      );
+                    }
+
+                    return null;
+                  }
+                )}
+              </div>
             </section>
           </div>
+          {modalOpen && selectedImage && (
+            <div className="image-modal">
+              <div className="image-modal-content">
+                <span className="close" onClick={closeModal}>
+                  &times;
+                </span>
+                <img
+                  src={selectedImage}
+                  alt={`Project Image ${selectedImageIndex + 1}`}
+                />
+                <span className="prev" onClick={handlePrev}>
+                  <img className="chevron-left" src={chevron} alt="" />
+                </span>
+                <span className="next" onClick={handleNext}>
+                  <img className="chevron-right" src={chevron} alt="" />
+                </span>
+              </div>
+            </div>
+          )}
         </div>
       )}
-      {selectedImageIndex !== null &&
-        selectedImageIndex < filteredMedia.length && (
-          <div className="image-modal">
-            <span className="close" onClick={closeModal}>
-              &times;
-            </span>
-            <span className="prev" onClick={() => navigateMedia(-1)}>
-              <img className="chevron-mobile-left" src={chevron} alt="" />
-            </span>
-
-            {filteredMedia[selectedImageIndex].type === "Video" &&
-            filteredMedia[selectedImageIndex].type !== "false" ? (
-              <video
-                width="100%"
-                height="100%"
-                controls
-                className="image-modal-content"
-              >
-                <source
-                  src={filteredMedia[selectedImageIndex].content}
-                  type="video/mp4"
-                />
-              </video>
-            ) : null}
-
-            {filteredMedia[selectedImageIndex].type !== "false" &&
-            filteredMedia[selectedImageIndex].type !== "Video" ? (
-              <img
-                className="image-modal-content"
-                src={filteredMedia[selectedImageIndex].content}
-                alt=""
-              />
-            ) : null}
-
-            <span className="next" onClick={() => navigateMedia(1)}>
-              <img className="chevron-mobile-right" src={chevron} alt="" />
-            </span>
-          </div>
-        )}
     </>
   );
 };

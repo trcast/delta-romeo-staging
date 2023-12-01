@@ -475,6 +475,13 @@ nav {
 
 .project-gallery-container {
   width: 1024px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.project-gallery-image-container {
+  width: 100%;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 32px;
@@ -488,8 +495,7 @@ nav {
   overflow: hidden;
 }
 
-.project-image,
-.project-video-container video {
+.project-image {
   object-fit: cover;
   width: 100%;
   height: 100%;
@@ -552,12 +558,12 @@ nav {
   right: 20px;
 }
 
-.chevron-mobile-left {
+.chevron-left {
   transform: rotate(90deg);
   width: 160%;
 }
 
-.chevron-mobile-right {
+.chevron-right {
   transform: rotate(-90deg);
   width: 160%;
 }
