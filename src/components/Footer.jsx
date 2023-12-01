@@ -15,7 +15,7 @@ const Footer = () => {
         </Link>
         <div className="footer-address-container">
           <p className="white">Delta Romeo</p>
-          <img src={address} alt="" />
+          {/* <img src={address} alt="" /> */}
         </div>
         <p className="gray">© 2023 Delta Romeo LLC</p>
       </div>
