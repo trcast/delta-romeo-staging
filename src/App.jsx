@@ -22,16 +22,18 @@ function App() {
   return (
     <div>
       {isHomepage && <Video />}
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Homepage />} />
-        <Route path="/work" element={<Work />} />
-        <Route path="/work/:id" element={<ProjectPage />} />
-        <Route path="/jobs" element={<Jobs />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
-      </Routes>
-      <Footer />
+      <div className="app-container">
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Homepage />} />
+          <Route path="/work" element={<Work />} />
+          <Route path="/work/:id" element={<ProjectPage />} />
+          <Route path="/jobs" element={<Jobs />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
+        <Footer />
+      </div>
     </div>
   );
 }

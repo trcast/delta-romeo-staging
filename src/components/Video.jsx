@@ -95,6 +95,7 @@ const Video = () => {
               <img
                 src={works[selectedWorkIndex].acf.homepage_preview_image}
                 alt={`Project ${selectedWorkIndex + 1}`}
+                className="video-image"
               />
             </Link>
           </>
