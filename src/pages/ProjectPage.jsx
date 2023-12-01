@@ -88,7 +88,7 @@ const ProjectPage = () => {
       const iframeElement = tempDiv.querySelector("iframe");
 
       iframeElement.width = "100%";
-      iframeElement.height = "896px";
+      iframeElement.height = "860px";
 
       const modifiedIframeHtml = tempDiv.innerHTML;
 

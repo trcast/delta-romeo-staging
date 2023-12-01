@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import "../App.css";
 
 const Video = () => {
   const [works, setWorks] = useState([]);
@@ -80,14 +81,14 @@ const Video = () => {
             <div className="title-tag-container">
               <Link
                 to={`/work/${works[selectedWorkIndex].id}`}
-                className="link-style"
+                className="link-style title-tag"
               >
-                <p className="white title-tag">
+                <h7 className="white">
                   {works[selectedWorkIndex].acf.project_name}
-                </p>
+                </h7>
               </Link>
               <button className="title-tag" onClick={openModal}>
-                <p className="white">View Our Reel</p>
+                <h7 className="white">View Our Reel</h7>
               </button>
             </div>
             <Link to={`/work/${works[selectedWorkIndex].id}`}>

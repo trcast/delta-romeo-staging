@@ -35,7 +35,7 @@ const Jobs = () => {
       <div className="jobs-container">
         <h4 className="white regular">Current Openings</h4>
         <p
-          className="gray"
+          className="gray white-link"
           dangerouslySetInnerHTML={{ __html: biographies[0]?.acf.jobs_bio }}
         />
       </div>
