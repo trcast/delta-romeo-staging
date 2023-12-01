@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import chevron from "../assets/client/chevron.svg";
 
 const ProjectPage = () => {
   const [works, setWorks] = useState({ acf: {} });
+  const [mainIframeHtml, setMainIframeHtml] = useState("");
+  const [secondaryIframeHtml, setSecondaryIframeHtml] = useState({});
   const { id } = useParams();
 
   const fetchData = async () => {
@@ -70,10 +72,72 @@ const ProjectPage = () => {
       setSelectedImage(nextImage);
       setSelectedImageIndex(nextIndex);
     } else {
-      // If the next image is false, loop back to the first image
       setSelectedImage(works.acf.project_image_1);
       setSelectedImageIndex(0);
     }
+  };
+
+  const [iframeHtml, setIframeHtml] = useState("");
+
+  useEffect(() => {
+    if (works.acf.main_project_video_1_type === "Url") {
+      const originalIframeHtml = works.acf.main_project_url_1;
+
+      const tempDiv = document.createElement("div");
+      tempDiv.innerHTML = originalIframeHtml;
+      const iframeElement = tempDiv.querySelector("iframe");
+
+      iframeElement.width = "100%";
+      iframeElement.height = "896px";
+
+      const modifiedIframeHtml = tempDiv.innerHTML;
+
+      setIframeHtml(modifiedIframeHtml);
+    }
+  }, [works.acf.main_project_video_1_type, works.acf.main_project_url_1]);
+
+  useEffect(() => {
+    updateIframeStyle(works.acf.main_project_url_1, setMainIframeHtml);
+  }, [works.acf.main_project_video_1_type, works.acf.main_project_url_1]);
+
+  useEffect(() => {
+    for (let index = 1; index <= 5; index++) {
+      const videoTypeKey = `secondary_project_video_${index}_type`;
+      const urlKey = `secondary_project_url_${index}`;
+      const iframeHtml = works.acf[urlKey];
+
+      if (works.acf[videoTypeKey] === "Url" && iframeHtml) {
+        updateIframeStyle(iframeHtml, (modifiedHtml) =>
+          setSecondaryIframeHtml((prev) => ({
+            ...prev,
+            [urlKey]: modifiedHtml,
+          }))
+        );
+      }
+    }
+  }, [works.acf]);
+
+  const updateIframeStyle = (originalIframeHtml, setIframeHtml) => {
+    if (!originalIframeHtml) {
+      console.error("Original iframe HTML is undefined");
+      return;
+    }
+
+    const tempDiv = document.createElement("div");
+    tempDiv.innerHTML = originalIframeHtml;
+    const iframeElement = tempDiv.querySelector("iframe");
+
+    if (!iframeElement) {
+      console.error("Iframe element not found", originalIframeHtml);
+      return;
+    }
+
+    iframeElement.width = "100%";
+    iframeElement.height = "560px";
+
+    const modifiedIframeHtml = tempDiv.innerHTML;
+
+    setIframeHtml(modifiedIframeHtml);
   };
 
   return (
@@ -118,18 +182,21 @@ const ProjectPage = () => {
             <h2>{works.acf.project_name}</h2>
             <div className="main-project-image-container">
               {works.acf.main_project_video_1_type === "Video" && (
-                <video width="100%" height="100%" controls>
-                  <source
-                    src={works.acf.main_project_video_1}
-                    type="video/mp4"
-                  />
+                <video controls className="main-project-image-content">
+                  {works.acf.main_project_video_1 && (
+                    <source
+                      src={works.acf.main_project_video_1}
+                      type="video/mp4"
+                    />
+                  )}
                 </video>
               )}
               {works.acf.main_project_video_1_type === "Url" && (
                 <div
                   dangerouslySetInnerHTML={{
-                    __html: works.acf.main_project_url_1,
+                    __html: iframeHtml,
                   }}
+                  className="main-project-image-content"
                 />
               )}
             </div>
@@ -149,14 +216,11 @@ const ProjectPage = () => {
                     const videoTypeKey = `secondary_project_video_${index}_type`;
                     const videoKey = `secondary_project_video_${index}`;
                     const urlKey = `secondary_project_url_${index}`;
-                    if (
-                      works.acf[videoTypeKey] &&
-                      (works.acf[videoKey] !== false ||
-                        (works.acf[urlKey] && works.acf[urlKey].trim() !== ""))
-                    ) {
-                      return (
-                        <div key={index} className="gallery-video-container">
-                          {works.acf[videoTypeKey] === "Video" && (
+
+                    return (
+                      <div key={index} className="gallery-video-container">
+                        {works.acf[videoTypeKey] === "Video" &&
+                          works.acf[videoKey] && (
                             <video width="100%" height="100%" controls>
                               <source
                                 src={works.acf[videoKey]}
@@ -164,18 +228,15 @@ const ProjectPage = () => {
                               />
                             </video>
                           )}
-                          {works.acf[videoTypeKey] === "Url" && (
-                            <div
-                              dangerouslySetInnerHTML={{
-                                __html: works.acf[urlKey],
-                              }}
-                            />
-                          )}
-                        </div>
-                      );
-                    }
-
-                    return null;
+                        {works.acf[videoTypeKey] === "Url" && (
+                          <div
+                            dangerouslySetInnerHTML={{
+                              __html: secondaryIframeHtml[urlKey],
+                            }}
+                          />
+                        )}
+                      </div>
+                    );
                   }
                 )}
               </div>
@@ -204,7 +265,21 @@ const ProjectPage = () => {
                 )}
               </div>
             </section>
+            {works.acf.include_sidebar && (
+              <div className="project-sidebar-container">
+                {works.acf.sidebar && (
+                  <p
+                    className="gray"
+                    dangerouslySetInnerHTML={{ __html: works.acf.sidebar }}
+                  />
+                )}
+              </div>
+            )}
+            <Link to="/work" className="link-style">
+              <button className="all-work-button">View All Work</button>
+            </Link>
           </div>
+
           {modalOpen && selectedImage && (
             <div className="image-modal">
               <div className="image-modal-content">
@@ -214,6 +289,7 @@ const ProjectPage = () => {
                 <img
                   src={selectedImage}
                   alt={`Project Image ${selectedImageIndex + 1}`}
+                  className="image-modal-content"
                 />
                 <span className="prev" onClick={handlePrev}>
                   <img className="chevron-left" src={chevron} alt="" />
