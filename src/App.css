@@ -190,19 +190,17 @@ nav {
 }
 
 .video-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  position: relative;
   width: 100%;
-  height: 80%;
+  height: 800px;
   overflow: hidden;
-  text-align: center;
 }
 
 .video-image {
-  width: 100vw;
+  width: 100%;
   height: 100%;
   object-fit: cover;
+  margin: auto;
 }
 
 .title-tag-container {
@@ -851,6 +849,10 @@ nav {
 }
 
 @media only screen and (max-width: 600px) {
+  .video-container {
+    height: fit-content;
+  }
+
   .project-image-container-page {
     display: flex;
     width: 100%;
@@ -1065,6 +1067,10 @@ nav {
 }
 
 @media only screen and (min-width: 601px) and (max-width: 1000px) {
+  .video-container {
+    height: fit-content;
+  }
+
   h1 {
     font-size: 60px;
   }
@@ -1087,10 +1093,6 @@ nav {
 
   p {
     font-size: 14px;
-  }
-
-  .video-container {
-    max-height: 400px;
   }
 
   .modal {
@@ -1282,10 +1284,8 @@ nav {
 }
 
 @media only screen and (min-width: 1001px) and (max-width: 1420px) {
-  .video img {
-    width: 100vw;
-    height: 100%;
-    object-fit: cover;
+  .video-container {
+    height: 600px;
   }
 
   .header {
@@ -1441,12 +1441,6 @@ nav {
 }
 
 @media only screen and (min-width: 1421px) and (max-width: 1610px) {
-  .video img {
-    width: 100vw;
-    height: 100%;
-    object-fit: cover;
-  }
-
   .header {
     margin: 64px 32px 24px 32px;
     padding: 8px 0;
@@ -1600,10 +1594,8 @@ nav {
     margin: 0 auto;
   }
 
-  .video img {
-    width: 100vw;
-    height: 100%;
-    object-fit: cover;
+  .video-container {
+    height: 900px;
   }
 
   .header {

@@ -76,30 +76,31 @@ const Video = () => {
   return (
     <div className="video-container">
       <div className="video">
-        {works.length > 0 && (
-          <>
-            <div className="title-tag-container">
-              <Link
-                to={`/work/${works[selectedWorkIndex].id}`}
-                className="link-style title-tag"
-              >
-                <h7 className="white">
-                  {works[selectedWorkIndex].acf.project_name}
-                </h7>
-              </Link>
-              <button className="title-tag" onClick={openModal}>
-                <h7 className="white">View Our Reel</h7>
-              </button>
-            </div>
-            <Link to={`/work/${works[selectedWorkIndex].id}`}>
-              <img
-                src={works[selectedWorkIndex].acf.homepage_preview_image}
-                alt={`Project ${selectedWorkIndex + 1}`}
-                className="video-image"
-              />
-            </Link>
-          </>
+        {works.length > 0 && selectedWorkIndex < works.length && (
+          <Link to={`/work/${works[selectedWorkIndex]?.id}`}>
+            <img
+              src={works[selectedWorkIndex]?.acf.homepage_preview_image}
+              alt={`Project ${selectedWorkIndex + 1}`}
+              className="video-image"
+            />
+          </Link>
         )}
+      </div>
+
+      <div className="title-tag-container">
+        {works.length > 0 && selectedWorkIndex < works.length && (
+          <Link
+            to={`/work/${works[selectedWorkIndex].id}`}
+            className="link-style title-tag"
+          >
+            <h6 className="white">
+              {works[selectedWorkIndex].acf.project_name}
+            </h6>
+          </Link>
+        )}
+        <button className="title-tag" onClick={openModal}>
+          <h6 className="white">View Our Reel</h6>
+        </button>
       </div>
 
       {isModalOpen && (
@@ -109,7 +110,7 @@ const Video = () => {
               &times;
             </button>
           </div>
-          {biographies.length > 0 && biographies[0].acf.demo_reel && (
+          {biographies.length > 0 && biographies[0]?.acf.demo_reel && (
             <iframe
               src={biographies[0].acf.demo_reel}
               allow="autoplay; fullscreen;"
