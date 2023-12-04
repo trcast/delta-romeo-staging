@@ -33,11 +33,15 @@ const Jobs = () => {
     <section>
       <SectionHeader title="Jobs" />
       <div className="jobs-container">
-        <h4 className="white regular">Current Openings</h4>
-        <p
-          className="gray white-link"
-          dangerouslySetInnerHTML={{ __html: biographies[0]?.acf.jobs_bio }}
-        />
+        <div className="jobs-title">
+          <h4 className="white regular">Current Openings</h4>
+        </div>
+        <div className="jobs-text">
+          <p
+            className="gray white-link"
+            dangerouslySetInnerHTML={{ __html: biographies[0]?.acf.jobs_bio }}
+          />
+        </div>
       </div>
     </section>
   );

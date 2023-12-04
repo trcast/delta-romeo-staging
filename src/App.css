@@ -505,12 +505,42 @@ nav {
   height: 100%;
 }
 
+.project-image-container-sidebar {
+  position: relative;
+  flex: 1;
+  overflow: hidden;
+}
+
+.sidebar-text-container {
+  flex: 1;
+  padding-left: 32px;
+}
+
 .project-sidebar-container {
   width: 1024px;
   padding: 32px 0px;
   border-top: 0.5px solid var(--med-gray, #878787);
   border-bottom: 0.5px solid var(--med-gray, #878787);
   margin-top: 64px;
+}
+
+.project-sidebar-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.sidebar-header {
+  margin-bottom: 32px;
+  width: 100%;
+}
+
+.project-sidebar-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 .image-modal {
@@ -806,12 +836,19 @@ nav {
 
 .jobs-container {
   display: flex;
-  width: 892px;
-  flex-direction: column;
+  flex-direction: row;
   align-items: flex-start;
   gap: 16px;
   padding: 0 32px;
   margin-top: 64px;
+}
+
+.jobs-title {
+  flex: 1;
+}
+
+.jobs-text {
+  width: 692px;
 }
 
 .white-link a {
@@ -849,8 +886,21 @@ nav {
 }
 
 @media only screen and (max-width: 600px) {
+  .jobs-container {
+    flex-direction: column;
+  }
+
+  .jobs-text {
+    width: 100%;
+  }
+
   .video-container {
-    height: fit-content;
+    height: 450px;
+  }
+
+  .video-image {
+    width: 100%;
+    height: 450px;
   }
 
   .project-image-container-page {
@@ -1067,6 +1117,13 @@ nav {
 }
 
 @media only screen and (min-width: 601px) and (max-width: 1000px) {
+  .jobs-container {
+    flex-direction: column;
+  }
+  .jobs-text {
+    width: 100%;
+  }
+
   .video-container {
     height: fit-content;
   }
@@ -1284,6 +1341,10 @@ nav {
 }
 
 @media only screen and (min-width: 1001px) and (max-width: 1420px) {
+  .jobs-text {
+    width: 592px;
+  }
+
   .video-container {
     height: 600px;
   }
@@ -1428,11 +1489,12 @@ nav {
   }
 
   .form-input {
-    width: 352px;
+    width: 452px;
   }
 
   .contact-form-info-container {
     width: 552px;
+    padding-left: 12px;
   }
 
   .jobs-container {
@@ -1581,6 +1643,7 @@ nav {
 
   .contact-form-info-container {
     width: 704px;
+    padding-left: 12px;
   }
 
   .jobs-container {

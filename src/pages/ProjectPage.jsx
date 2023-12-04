@@ -88,7 +88,7 @@ const ProjectPage = () => {
       const iframeElement = tempDiv.querySelector("iframe");
 
       iframeElement.width = "100%";
-      iframeElement.height = "860px";
+      iframeElement.height = "460px";
 
       const modifiedIframeHtml = tempDiv.innerHTML;
 
@@ -133,7 +133,7 @@ const ProjectPage = () => {
     }
 
     iframeElement.width = "100%";
-    iframeElement.height = "560px";
+    iframeElement.height = "360px";
 
     const modifiedIframeHtml = tempDiv.innerHTML;
 
@@ -267,11 +267,29 @@ const ProjectPage = () => {
             </section>
             {works.acf.include_sidebar && (
               <div className="project-sidebar-container">
-                {works.acf.sidebar && (
-                  <p
-                    className="gray"
-                    dangerouslySetInnerHTML={{ __html: works.acf.sidebar }}
-                  />
+                {works.acf.include_sidebar && (
+                  <div className="project-sidebar-group">
+                    <p className="gray regular sidebar-header">
+                      Under the Hood
+                    </p>
+                    <div className="project-sidebar-content">
+                      <div className="project-image-container-sidebar">
+                        <img
+                          src={works.acf.sidebar_image}
+                          className="project-image"
+                          alt=""
+                        />
+                      </div>
+                      <div className="sidebar-text-container">
+                        <p
+                          className="gray"
+                          dangerouslySetInnerHTML={{
+                            __html: works.acf.sidebar_text,
+                          }}
+                        />
+                      </div>
+                    </div>
+                  </div>
                 )}
               </div>
             )}
