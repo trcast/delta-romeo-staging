@@ -1533,15 +1533,11 @@ nav {
   }
 
   nav {
-    margin: 0 492px 0 32px;
+    margin: 0 392px 0 32px;
   }
 
   .nav-links-container {
-    width: 240px;
-  }
-
-  .nav-links-container p {
-    margin-right: 32px;
+    width: 340px;
   }
 
   .close-modal {
@@ -1695,15 +1691,11 @@ nav {
   }
 
   nav {
-    margin: 0 492px 0 32px;
+    margin: 0 392px 0 32px;
   }
 
   .nav-links-container {
-    width: 240px;
-  }
-
-  .nav-links-container p {
-    margin-right: 32px;
+    width: 340px;
   }
 
   .close-modal {
