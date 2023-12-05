@@ -17,7 +17,7 @@ const Footer = () => {
           <p className="white">DeltaRomeo</p>
           {/* <img src={address} alt="" /> */}
         </div>
-        <p className="gray">© 2023 Delta Romeo LLC</p>
+        <p className="gray">© 2023 DeltaRomeo LLC</p>
       </div>
       <div className="footer-socials-container">
         <a
@@ -25,16 +25,18 @@ const Footer = () => {
           className="link-style hover-grow"
           target="_blank"
         >
-          <img src={twitter} alt="" />
+          <img className="footer-social-img" src={twitter} alt="" />
         </a>
         <a
           href="https://www.instagram.com/deltaromeovfx/"
           className="link-style hover-grow"
           target="_blank"
         >
-          <img src={instagram} alt="" />
+          <img className="footer-social-img" src={instagram} alt="" />
         </a>
-        <img src={linkedin} alt="" />
+        <a href="#" className="link-style hover-grow" target="_blank">
+          <img className="footer-social-img" src={linkedin} alt="" />
+        </a>
       </div>
     </section>
   );
