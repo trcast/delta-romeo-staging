@@ -14,14 +14,26 @@ const Footer = () => {
           <img src={logo} alt="" />
         </Link>
         <div className="footer-address-container">
-          <p className="white">Delta Romeo</p>
+          <p className="white">DeltaRomeo</p>
           {/* <img src={address} alt="" /> */}
         </div>
         <p className="gray">© 2023 Delta Romeo LLC</p>
       </div>
       <div className="footer-socials-container">
-        <img src={twitter} alt="" />
-        <img src={instagram} alt="" />
+        <a
+          href="https://x.com/deltaRomeovfx"
+          className="link-style hover-grow"
+          target="_blank"
+        >
+          <img src={twitter} alt="" />
+        </a>
+        <a
+          href="https://www.instagram.com/deltaromeovfx/"
+          className="link-style hover-grow"
+          target="_blank"
+        >
+          <img src={instagram} alt="" />
+        </a>
         <img src={linkedin} alt="" />
       </div>
     </section>
