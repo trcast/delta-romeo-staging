@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams, Link } from "react-router-dom";
 import chevron from "../assets/client/chevron.svg";
+import { Helmet } from "react-helmet";
 
 const ProjectPage = () => {
   const [works, setWorks] = useState({ acf: {} });
@@ -143,182 +144,225 @@ const ProjectPage = () => {
   return (
     <>
       {works.acf && (
-        <div>
-          <section className="project-details-main">
-            <div className="project-page-details-container">
-              <div className="detail-info-line">
-                <p className="gray info-title">Year</p>
-                <p className="white info-data">{works.acf.year}</p>
-              </div>
-              <div className="detail-info-line">
-                <p className="gray info-title">Client</p>
-                <p className="white info-data">{works.acf.client}</p>
-              </div>
-              <div className="detail-info-line">
-                <p className="gray info-title">Project</p>
-                <p className="white info-data">{works.acf.project_name}</p>
-              </div>
-              <div className="detail-info-line">
-                <p className="gray info-title">Services</p>
+        <>
+          <Helmet>
+            <title>{works.acf.project_name}</title>
+            <meta name="description" content={works.acf.project_brief} />
+            <meta
+              name="robots"
+              content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
+            />
+            <link
+              rel="canonical"
+              href={`https://yij.zsr.mybluehost.me/.website_7fda1f27/?work=${id}`}
+            />
+            <meta property="og:locale" content="en_US" />
+            <meta property="og:type" content="article" />
+            <meta property="og:title" content={works.acf.project_name} />
+            <meta property="og:description" content={works.acf.project_brief} />
+            <meta
+              property="og:url"
+              content={`https://yij.zsr.mybluehost.me/.website_7fda1f27/?work=${id}`}
+            />
+            <meta property="og:site_name" content="Delta Romeo API" />
+            <meta
+              property="article:modified_time"
+              content={works.acf.modified_time}
+            />
+            <meta property="og:image" content={works.acf.og_image} />
+            <meta
+              property="og:image:width"
+              content={works.acf.og_image_width}
+            />
+            <meta
+              property="og:image:height"
+              content={works.acf.og_image_height}
+            />
+            <meta property="og:image:type" content={works.acf.og_image_type} />
+            <meta name="twitter:card" content="summary_large_image" />
+            <meta name="twitter:site" content="@deltaRomeovfx" />
+          </Helmet>
 
-                {works.acf.services && Array.isArray(works.acf.services) && (
-                  <div className="info-data-services">
-                    {works.acf.services.map((service) => (
-                      <p className="white" key={service.term_id}>
-                        {service.name}
-                      </p>
-                    ))}
-                  </div>
-                )}
-                <div className="info-data-services-mobile">
+          <div>
+            <section className="project-details-main">
+              <div className="project-page-details-container">
+                <div className="detail-info-line">
+                  <p className="gray info-title">Year</p>
+                  <p className="white info-data">{works.acf.year}</p>
+                </div>
+                <div className="detail-info-line">
+                  <p className="gray info-title">Client</p>
+                  <p className="white info-data">{works.acf.client}</p>
+                </div>
+                <div className="detail-info-line">
+                  <p className="gray info-title">Project</p>
+                  <p className="white info-data">{works.acf.project_name}</p>
+                </div>
+                <div className="detail-info-line">
+                  <p className="gray info-title">Services</p>
+
                   {works.acf.services && Array.isArray(works.acf.services) && (
-                    <p className="white">{works.acf.services[0].name}</p>
+                    <div className="info-data-services">
+                      {works.acf.services.map((service) => (
+                        <p className="white" key={service.term_id}>
+                          {service.name}
+                        </p>
+                      ))}
+                    </div>
                   )}
+                  <div className="info-data-services-mobile">
+                    {works.acf.services &&
+                      Array.isArray(works.acf.services) && (
+                        <p className="white">{works.acf.services[0].name}</p>
+                      )}
+                  </div>
                 </div>
               </div>
-            </div>
-          </section>
-          <section className="project-hero-container">
-            <h2>{works.acf.project_name}</h2>
-            <div className="main-project-image-container">
-              {works.acf.main_project_video_1_type === "Video" && (
-                <video controls className="main-project-image-content">
-                  {works.acf.main_project_video_1 && (
-                    <source
-                      src={works.acf.main_project_video_1}
-                      type="video/mp4"
-                    />
-                  )}
-                </video>
-              )}
-              {works.acf.main_project_video_1_type === "Url" && (
-                <div
-                  dangerouslySetInnerHTML={{
-                    __html: iframeHtml,
-                  }}
-                  className="main-project-image-content"
-                />
-              )}
-            </div>
-          </section>
-          <section className="project-brief-container">
-            <h5>Project Brief</h5>
-            <div
-              className="project-brief-paragraph"
-              dangerouslySetInnerHTML={{ __html: works.acf.project_brief }}
-            />
-          </section>
-          <div className="container-right-global">
-            <section className="project-gallery-container">
-              <div className="project-gallery-video-container">
-                {Array.from({ length: 5 }, (_, index) => index + 1).map(
-                  (index) => {
-                    const videoTypeKey = `secondary_project_video_${index}_type`;
-                    const videoKey = `secondary_project_video_${index}`;
-                    const urlKey = `secondary_project_url_${index}`;
-
-                    return (
-                      <div key={index} className="gallery-video-container">
-                        {works.acf[videoTypeKey] === "Video" &&
-                          works.acf[videoKey] && (
-                            <video width="100%" height="100%" controls>
-                              <source
-                                src={works.acf[videoKey]}
-                                type="video/mp4"
-                              />
-                            </video>
-                          )}
-                        {works.acf[videoTypeKey] === "Url" && (
-                          <div
-                            dangerouslySetInnerHTML={{
-                              __html: secondaryIframeHtml[urlKey],
-                            }}
-                          />
-                        )}
-                      </div>
-                    );
-                  }
+            </section>
+            <section className="project-hero-container">
+              <h2>{works.acf.project_name}</h2>
+              <div className="main-project-image-container">
+                {works.acf.main_project_video_1_type === "Video" && (
+                  <video controls className="main-project-image-content">
+                    {works.acf.main_project_video_1 && (
+                      <source
+                        src={works.acf.main_project_video_1}
+                        type="video/mp4"
+                      />
+                    )}
+                  </video>
                 )}
-              </div>
-              <div className="project-gallery-image-container">
-                {Array.from({ length: 10 }, (_, index) => index + 1).map(
-                  (index) => {
-                    const imageKey = `project_image_${index}`;
-                    if (works.acf[imageKey] !== false) {
-                      return (
-                        <div
-                          key={index}
-                          className="project-image-container-page"
-                          onClick={() => openModal(works.acf[imageKey], index)}
-                        >
-                          <img
-                            src={works.acf[imageKey]}
-                            alt={`Project Image ${index}`}
-                            className="project-image"
-                          />
-                        </div>
-                      );
-                    }
-
-                    return null;
-                  }
+                {works.acf.main_project_video_1_type === "Url" && (
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: iframeHtml,
+                    }}
+                    className="main-project-image-content"
+                  />
                 )}
               </div>
             </section>
-            {works.acf.include_sidebar && (
-              <div className="project-sidebar-container">
-                {works.acf.include_sidebar && (
-                  <div className="project-sidebar-group">
-                    <p className="gray regular sidebar-header">
-                      Under the Hood
-                    </p>
-                    <div className="project-sidebar-content">
-                      <div className="project-image-container-sidebar">
-                        <img
-                          src={works.acf.sidebar_image}
-                          className="project-image"
-                          alt=""
-                        />
-                      </div>
-                      <div className="sidebar-text-container">
-                        <p
-                          className="gray"
-                          dangerouslySetInnerHTML={{
-                            __html: works.acf.sidebar_text,
-                          }}
-                        />
+            <section className="project-brief-container">
+              <h5>Project Brief</h5>
+              <div
+                className="project-brief-paragraph"
+                dangerouslySetInnerHTML={{ __html: works.acf.project_brief }}
+              />
+            </section>
+            <div className="container-right-global">
+              <section className="project-gallery-container">
+                <div className="project-gallery-video-container">
+                  {Array.from({ length: 5 }, (_, index) => index + 1).map(
+                    (index) => {
+                      const videoTypeKey = `secondary_project_video_${index}_type`;
+                      const videoKey = `secondary_project_video_${index}`;
+                      const urlKey = `secondary_project_url_${index}`;
+
+                      return (
+                        <div key={index} className="gallery-video-container">
+                          {works.acf[videoTypeKey] === "Video" &&
+                            works.acf[videoKey] && (
+                              <video width="100%" height="100%" controls>
+                                <source
+                                  src={works.acf[videoKey]}
+                                  type="video/mp4"
+                                />
+                              </video>
+                            )}
+                          {works.acf[videoTypeKey] === "Url" && (
+                            <div
+                              dangerouslySetInnerHTML={{
+                                __html: secondaryIframeHtml[urlKey],
+                              }}
+                            />
+                          )}
+                        </div>
+                      );
+                    }
+                  )}
+                </div>
+                <div className="project-gallery-image-container">
+                  {Array.from({ length: 10 }, (_, index) => index + 1).map(
+                    (index) => {
+                      const imageKey = `project_image_${index}`;
+                      if (works.acf[imageKey] !== false) {
+                        return (
+                          <div
+                            key={index}
+                            className="project-image-container-page"
+                            onClick={() =>
+                              openModal(works.acf[imageKey], index)
+                            }
+                          >
+                            <img
+                              src={works.acf[imageKey]}
+                              alt={`Project Image ${index}`}
+                              className="project-image"
+                            />
+                          </div>
+                        );
+                      }
+
+                      return null;
+                    }
+                  )}
+                </div>
+              </section>
+              {works.acf.include_sidebar && (
+                <div className="project-sidebar-container">
+                  {works.acf.include_sidebar && (
+                    <div className="project-sidebar-group">
+                      <p className="gray regular sidebar-header">
+                        Under the Hood
+                      </p>
+                      <div className="project-sidebar-content">
+                        <div className="project-image-container-sidebar">
+                          <img
+                            src={works.acf.sidebar_image}
+                            className="project-image"
+                            alt=""
+                          />
+                        </div>
+                        <div className="sidebar-text-container">
+                          <p
+                            className="gray"
+                            dangerouslySetInnerHTML={{
+                              __html: works.acf.sidebar_text,
+                            }}
+                          />
+                        </div>
                       </div>
                     </div>
-                  </div>
-                )}
+                  )}
+                </div>
+              )}
+              <Link to="/work" className="link-style">
+                <button className="all-work-button">View All Work</button>
+              </Link>
+            </div>
+
+            {modalOpen && selectedImage && (
+              <div className="image-modal">
+                <div className="image-modal-content">
+                  <span className="close" onClick={closeModal}>
+                    &times;
+                  </span>
+                  <img
+                    src={selectedImage}
+                    alt={`Project Image ${selectedImageIndex + 1}`}
+                    className="image-modal-content"
+                  />
+                  <span className="prev" onClick={handlePrev}>
+                    <img className="chevron-left" src={chevron} alt="" />
+                  </span>
+                  <span className="next" onClick={handleNext}>
+                    <img className="chevron-right" src={chevron} alt="" />
+                  </span>
+                </div>
               </div>
             )}
-            <Link to="/work" className="link-style">
-              <button className="all-work-button">View All Work</button>
-            </Link>
           </div>
-
-          {modalOpen && selectedImage && (
-            <div className="image-modal">
-              <div className="image-modal-content">
-                <span className="close" onClick={closeModal}>
-                  &times;
-                </span>
-                <img
-                  src={selectedImage}
-                  alt={`Project Image ${selectedImageIndex + 1}`}
-                  className="image-modal-content"
-                />
-                <span className="prev" onClick={handlePrev}>
-                  <img className="chevron-left" src={chevron} alt="" />
-                </span>
-                <span className="next" onClick={handleNext}>
-                  <img className="chevron-right" src={chevron} alt="" />
-                </span>
-              </div>
-            </div>
-          )}
-        </div>
+        </>
       )}
     </>
   );
