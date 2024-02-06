@@ -34,7 +34,11 @@ const Footer = () => {
         >
           <img className="footer-social-img" src={instagram} alt="" />
         </a>
-        <a href="#" className="link-style hover-grow" target="_blank">
+        <a
+          href="https://www.linkedin.com/company/deltaromeo/about/?viewAsMember=true"
+          className="link-style hover-grow"
+          target="_blank"
+        >
           <img className="footer-social-img" src={linkedin} alt="" />
         </a>
       </div>
